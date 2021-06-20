@@ -17,7 +17,6 @@ int PrimeNumber(int n)
 }
 
 
-
 int main()
 {
     int n;
