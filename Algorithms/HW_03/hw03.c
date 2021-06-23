@@ -1,4 +1,6 @@
+
 #include <stdio.h>
+#include <stdlib.h>
 
 int **pArr;
 
@@ -124,32 +126,28 @@ int main(){
     createArr(Y,X);
     // printArr(Y,X);  // empty board
 
-    /*------------- test values -----------*/
-    pArr[0][2] = 1;
-    pArr[2][2] = 1;
-    pArr[4][0] = 1;
+    /*------------- test values for 5 x 5-----------*/
+    //pArr[0][2] = 1;
+    //pArr[2][2] = 1;
+    //pArr[4][3] = 1;
+    //pArr[3][0] = 1;
     printArr(Y,X);
     /*--------------------------------------*/
 
     addStop(Y,X);
-//    printArr(Y,X);   // add unused cells
 
     for (int y = 0; y < Y; y++){
         for (int x = 0; x < X; x++){
+            ways = recChess(y, x);
             printf("%3d",recChess(y, x));
         }
         printf("\n");
     }
 
-    // printf("Found %d possible ways!\n",   ); did not complete the output of the result, I'm sorry
+
+     printf("Found %d possible ways!\n", ways  ); //did not complete the output of the result, I'm sorry
 
     freeArr(Y);
 
     return 0;
 }
-
-
-
-
-
-
