@@ -1,0 +1,28 @@
+@startuml
+start
+
+: enter 11 digit ;
+: i = 0 (counter)\n N = 11]
+while ( i < N) is (yes)
+  : enter a[i];
+  : cin >> a[i] <
+  : i ++ ]
+endwhile (NO)
+  : i = 0]
+  while ( i < N) is (yes)
+    : a[i] = a[N - 1 - i] ]
+    : i ++ ]
+  endwhile (NO)
+
+: i = 0]
+while ( i < N) is (yes)
+  if ((sqrt(fabs(a[i])) + 5 * pow(a[i], 3)) > 400) then (yes)
+    : FIND res > 400;
+  else (no)
+  endif
+  : i ++ ]
+endwhile (NO)
+
+
+end
+@enduml
