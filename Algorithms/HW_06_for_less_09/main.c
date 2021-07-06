@@ -1,5 +1,4 @@
 #include <stdio.h>
-//#include <stdlib.h>
 #include <stddef.h>
 
 #define T char
@@ -41,8 +40,7 @@ void ins(int pr, int dat) {
 	if (items == SZ)
 	{
 		printf("Queue is full") ;
-	}
-	else
+	} else
 	{
 		arr[tail] = node;
 		items++;
@@ -54,8 +52,7 @@ Node* rem() {
 	if (items == 0)
 	{
 		return NULL;
-	}
-	else
+	} else
 	{
 		int i;
 		int maxPos = 0;
@@ -82,9 +79,12 @@ void printQueue() {
 	for (int i = 0; i < tail; ++i)
 	{
 		if (arr[i] == NULL)
-			printf("[ *, *]") ;
-		else
+        {
+            printf("[ *, *]") ;
+        } else
+        {
 			printf("%2d-> [%2d, %3d]\n",i+1 , arr[i]->pr,arr[i]->dat );
+        }
 	}
 	printf("\n");
 }
@@ -94,8 +94,7 @@ boolean pushToStack(T data) {
     {
         Stack[++cursor] = data;
         return true;
-    }
-    else
+    } else
     {
         printf("%s\n", "stack overflow");
         return false;
@@ -106,8 +105,7 @@ T popFromStack() {
     if(cursor != -1)
     {
         return Stack[cursor--];
-    }
-	else
+    } else
     {
         printf("%s\n", "Stack is empty");
         return -1;
@@ -119,8 +117,7 @@ void decToBinStack(int num) {
     if (num % 2 == 0)
     {
         pushToStack(0);
-    }
-	else
+    } else
     {
         pushToStack(1);
     }
@@ -128,8 +125,7 @@ void decToBinStack(int num) {
     if ((num / 2) != 0)
     {
         decToBinStack(num / 2);
-    }
-	else
+    } else
     {
         return;
     }
@@ -162,7 +158,7 @@ int main()
 	printf("\n");
 	printQueue();
 
-    /* ------------------ task 2 (convert decimal to binary using stack) ------------ */
+    /* ------------ task 2 (convert decimal to binary using stack) ------- */
 
     int n;
 	printf("%s", "Enter number for convert to dec: ");
