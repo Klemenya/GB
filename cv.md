@@ -1,10 +1,10 @@
-Johnny Coder
+Klemenia Pavel
 ============
 
 -------------------     ----------------------------
-1 MyAddress                        email@example.com  
-MyTown 1000                          @twitter_handle  
-MyCountry                           1800 my-phone-nr  
+str. Sovietskaya                        email@example.com  
+Baranovichi town                          @twitter_handle  
+Belarus                           1800 my-phone-nr  
 -------------------     ----------------------------
 
 Education
