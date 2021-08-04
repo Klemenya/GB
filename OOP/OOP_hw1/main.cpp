@@ -57,6 +57,36 @@ public:
 };
 
 
+class Stack
+{
+    int arr [10]{};
+    int lenstack = 0;
+
+public:
+    void reset()                // reset lenstack and arr
+    {
+
+    };
+    bool push()                 // add value in stack and return true if ok or false if error
+    {
+
+        return true;
+    };
+    int pop()                   // extract value from stack and print ATTENSION if stack empty
+    {
+
+        return 0;
+    };
+    void print()                // print content stack ( ) - if empty or for example ( 3 5 7 )
+    {
+
+    };
+
+};
+
+
+
+
 
 int main ()
 {
@@ -77,7 +107,7 @@ int main ()
 
 /* ----------------  task 2 ------------------------------------*/
 
-
+    std::cout << std::endl;
     RGBA colorTwo;
     std::uint8_t red = 5, green =5 , blue=5, alpha=100;
     RGBA colorOne(red,green, blue, alpha);
