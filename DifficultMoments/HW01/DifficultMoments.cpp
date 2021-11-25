@@ -97,8 +97,7 @@ public:
         {
             if (surname == record.first.surname) {
                 ++counter;
-                num = record.second;
-                
+                num = record.second;  
             }
         }
 
