@@ -4,3 +4,8 @@ OOP_hw*
 *.o
 .bin
 .obj
+Debug
+.vs
+*.sln
+*.vcxproj
+*.vcxproj.*
