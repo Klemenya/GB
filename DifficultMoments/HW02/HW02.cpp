@@ -3,7 +3,6 @@
 #include <algorithm>
 #include "Timer.h"
 #include <fstream>
-#include <any>
 #include <string>
 
 
@@ -24,7 +23,6 @@ void vectorSort(std::vector <T>& v)
 }
 
 
-
 class Book
 {
     std::vector<std::string> vParagraph;
@@ -40,6 +38,7 @@ public:
         else
         {
             int cntParagraph = 0;
+            int cntVowels = 0;
             std::string vowels = "EYUIOA";
             std::string paragraph;
 
@@ -48,15 +47,37 @@ public:
                 vParagraph.push_back(paragraph);
             }
 
+            /*---------------------------*/
+            Timer timer("for - for");
+            for (auto v : vParagraph)
+            {                
+                for (int i = 0; i < v.size() && v.size() >0; i++)
+                {    
+                    if (std::toupper(v[i]) == 'E' || std::toupper(v[i]) == 'Y' ||
+                        std::toupper(v[i]) == 'U' || std::toupper(v[i]) == 'I' ||
+                        std::toupper(v[i]) == 'O' || std::toupper(v[i]) == 'A')
+                    {
+                        ++cntVowels;
+                        //std::cout << v[i];
+                    };
+                }
+            }
+            timer.print();
 
-
+            /*---------------------------*/
+            std::cout << "cntVowels = " << cntVowels << '\n';
 
             for (auto v : vParagraph)
+            {
                 cntParagraph++;
+            }
+                
 
-            std::cout << cntParagraph << std::endl;
-            std::cout << vParagraph.at(28000);
-            std::cout << vParagraph.at(27000);
+            std::cout << "cntParagraph = " << cntParagraph << std::endl;
+            //std::cout << vParagraph.at(28000);
+            //std::cout << vParagraph.at(27000);
+
+            
 
         }
     }
