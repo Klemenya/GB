@@ -4,6 +4,7 @@
 #include "Timer.h"
 #include <fstream>
 #include <any>
+#include <string>
 
 
 
@@ -17,79 +18,19 @@ void Swap(T** Left, T** Right)
 }
 
 template <typename T>
-void vectorSort(std::vector <T>& v) 
+void vectorSort(std::vector <T>& v)
 {
     std::sort(v.begin(), v.end(), [](T left, T right) {return *left < *right; });
 }
 
-/*----------------------------------------------------------------------------------------*/
-bool findFirstWay(unsigned char h)
-{
-    h = toupper(h);
-    if (h == 'A' || h == 'E' || h == 'I' || h == 'O' || h == 'U')
-    {
-        return true;
-    }
-    return false;
-}
 
-int  firstWay(std::vector<unsigned char>& vec)
-{
 
-    return count_if(vec.begin(), vec.end(), findFirstWay);
-}
-
-bool findFirstWay1(unsigned char h)
-{
-    std::string s = "AEIOU";
-    h = toupper(h);
-    for (auto s1 : s)
-    {
-        if (h == s1)
-            return true;
-    }
-    return false;
-}
-
-int  firstWay1(std::vector<unsigned char>& vec)
-{
-
-    return count_if(vec.begin(), vec.end(), findFirstWay1);
-}
-
-int  firstWay2(std::vector<unsigned char>& vec)
-{
-    int count = 0;
-    std::string s = "AEIOU";
-    for (auto& c : vec)
-    {
-
-        c = toupper(c);
-        for (auto s1 : s)
-        {
-            if (c == s1)
-            {
-                count++;
-                break;
-            }
-
-        }
-    }
-    return count;
-}
-/*-----------------------------------------------------------------------------------------*/
-
-/*----------------------------------------------------------------------------------------*/
 class Book
 {
-private:
-
-    std::vector<std::string> allwords;
-
+    std::vector<std::string> vParagraph;
 
 public:
-
-
+    
     Book(std::ifstream& file)
     {
         if (!file.is_open())
@@ -98,58 +39,30 @@ public:
         }
         else
         {
-            while (!file.eof())
+            int cntParagraph = 0;
+            std::string vowels = "EYUIOA";
+            std::string paragraph;
+
+            while (std::getline(file, paragraph))
             {
-                std::string temp;
-                file >> temp;
-                allwords.push_back(temp);
+                vParagraph.push_back(paragraph);
             }
 
-            std::string  searchSymbols = "AEIOUY";
-            int counter = 0;
 
 
-            Timer timer("Count_if - For");
-            for (auto words : allwords)
-            {
-                counter += std::count_if(words.begin(), words.end(),
-                    [&searchSymbols](char symbol)
-                    {
-                        for (char sS : searchSymbols)
-                            if ((char)toupper(symbol) == sS)
-                            {
-                                return true;
-                            }
-                        return false;
-                    });
-            }
-            
-            timer.print();
-            std::cout << counter << std::endl;
 
+            for (auto v : vParagraph)
+                cntParagraph++;
 
-            counter = 0;
-            timer.start("   For   - For");
-            for (auto words : allwords)
-            {
-                for (auto letter : words)
-                {
-                    for (char sS : searchSymbols)
-                    {
-                        if ((char)toupper(letter) == sS)
-                        {
-                            counter++;
-                        }
-                    }
-                }
-            }
-            timer.print();
-            std::cout << counter << std::endl;
+            std::cout << cntParagraph << std::endl;
+            std::cout << vParagraph.at(28000);
+            std::cout << vParagraph.at(27000);
+
         }
     }
+
+
 };
-
-
 
 
 
@@ -167,7 +80,7 @@ int main()
     std::cout << "b = " << b << " [ " << &b << " ]" << "\tptrB = " << ptrB << " [ " << &ptrB << " ]";
     std::cout << std::endl;
 
-;   Swap(&ptrA, &ptrB);
+    Swap(&ptrA, &ptrB);
 
     std::cout << "a = " << a << " [ " << &a << " ]" << "\tptrA = " << ptrA << " [ " << &ptrA << " ]";
     std::cout << "  ||  ";
@@ -175,7 +88,7 @@ int main()
     std::cout << std::endl;
 
     /* ----------------------------------------------------------------------------------------------*/
-    
+
     std::cout << "\n -------- Task 2 --------------\n";
     std::vector<int*> myVector;
     for (int i = 0; i < 10; ++i)
