@@ -14,13 +14,20 @@ void PrintList(std::list <double> _list)
 void PushBackAverage ( std::list <double> &_list)
 {
     double sum = 0;
+
     size_t lSize = _list.size();
-    for (size_t i = 0; i < lSize; ++i)
+
+ //   for (auto l : _list)                                  // Так проще
+ //   {
+ //       sum += l;
+ //   }
+
+    for (size_t i = 0; i < lSize; ++i)                      // Так интереснее
     {
         sum += ( *next(_list.begin(), i));
     }
+    
     _list.push_back(sum / lSize);
-    PrintList(_list);
 }
 
 
