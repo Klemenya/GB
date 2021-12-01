@@ -2,7 +2,7 @@
 #include <list>
 
 
-void PrintList(std::list <double> _list)
+void PrintList(const std::list <double>& _list)
 {
     for (auto l : _list)
     {
@@ -11,22 +11,22 @@ void PrintList(std::list <double> _list)
     std::cout << std::endl;
 }
 
-void PushBackAverage ( std::list <double> &_list)
+void PushBackAverage(std::list <double>& _list)
 {
     double sum = 0;
 
     size_t lSize = _list.size();
 
- //   for (auto l : _list)                                  // Так проще
- //   {
- //       sum += l;
- //   }
+    //   for (auto l : _list)                                  // Так проще
+    //   {
+    //       sum += l;
+    //   }
 
     for (size_t i = 0; i < lSize; ++i)                      // Так интереснее
     {
-        sum += ( *next(_list.begin(), i));
+        sum += (*next(_list.begin(), i));                   // т.е. значение следующего в списке от начала (смещение на i элемен)
     }
-    
+
     _list.push_back(sum / lSize);
 }
 
@@ -34,13 +34,29 @@ void PushBackAverage ( std::list <double> &_list)
 int main()
 {
     /*Написать функцию, добавляющую в конец списка вещественных чисел элемент,
-      значение которого равно среднему арифметическому всех его элементов.*/
+      значение которого равно среднему арифметическому всех его элементов.    */
 
     std::list <double> myList = { 5.2, 3.0, 0.0, -18, 16.5, 4, 3.2, -20, 8, -8, -14.3 };
-    
+
     PrintList(myList);
     PushBackAverage(myList);
     PrintList(myList);
     
+    /*----------------------------------------------------------------------*/
+
+    /*Создать класс, представляющий матрицу. Реализовать в нем метод, 
+      вычисляющий определитель матрицы. Для простоты решения разрешаю 
+      реализовать метод только для 1,2,3-размерной матриц            */
+
+    
+
+    /*----------------------------------------------------------------------*/
+
+    /*Реализовать собственный класс итератора, с помощью которого можно будет
+      проитерироваться по диапазону целых чисел в цикле for-range-based.     */
+
+
+
+
 
 }
