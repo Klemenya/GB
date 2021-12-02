@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <iterator>
 #include <vector>
 #include <list>
 #include <deque>
@@ -6,6 +7,7 @@
 #include <algorithm>
 #include <random>
 
+using namespace std;
 
 /* Имеется отсортированный массив целых чисел. Необходимо разработать функцию 
   insert_sorted, которая принимает вектор и новое число и вставляет новое число 
@@ -20,21 +22,21 @@ void InsertSorted(std::vector<int>& vec, int value)
 }
 
 
-template<class Cont_, class T>
-void InsertSorted(Cont_& container, T value)
+template<class C, class T>
+void InsertSorted(C& container, T value)
 {
 	auto it = upper_bound(container.begin(), container.end(), value);
 	container.insert(it, value);
 }
 
-template<class Cont_>
-void PrintContainer(Cont_& vec)
+template<class C>
+void PrintContainer(C& vec)
 {
-	for (auto val : vec)
+	
+	for (auto i = vec.begin(); i != vec.end(); ++i)
 	{
-		std::cout << "[" << val << "]" << "  ";
-	}
-		
+		std::cout << "[" << *i << "]";
+	}	
 	std::cout << std::endl;
 }
 
@@ -78,9 +80,10 @@ int main()
 	PrintContainer(strVec);
 	std::deque<double> deq{ 0.1, 0.2, 0.4, 0.5 };
 	PrintContainer(deq);
-
 	std::string str = "abcefghj";
 	PrintContainer(str);
+	std::list<char> lst{ 'a', 'b', 'e', 'f' };
+	PrintContainer(lst);
 	
 	std::cout << "After : " << std::endl;
 
@@ -101,32 +104,16 @@ int main()
 	InsertSorted(str, 'i');
 	PrintContainer(str);
 
-	
-	
-	std::cout << "-------------------------------------";
-	std::list<char> lst{ 'a', 'b', 'e', 'f' };
-	while (!lst.empty())
-	{
-		std::cout << lst.front() << " ";
-		lst.pop_front();
-	}
-	std::cout << std::endl;
-	
 	InsertSorted(lst, 'd');
 	InsertSorted(lst, 'c');
-	while (!lst.empty())
-	{
-		std::cout << lst.front() << " ";
-		lst.pop_front();
-	}
-	std::cout << "-------------------------------------";
+	PrintContainer(lst);
 	
 
 	std::cout << "\n---------- Task 2 ------------\n";
 
 	std::vector<double> analogueSignal(100);
 
-	srand(time(0));
+	//srand(time(0));
 	generate(analogueSignal.begin(), analogueSignal.end(),
 		[]() { return (static_cast<double>(rand() % 100) / ((rand() % 10) + 1)); });
 
