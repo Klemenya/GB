@@ -5,12 +5,6 @@
 #include "Timer.h"
 
 
-
-
-
-
-
-
 template <typename T>
 void Swap(T** Left, T** Right)
 {
@@ -23,17 +17,6 @@ template <typename T>
 void vectorSort(std::vector <T>& v)
 {
     std::sort(v.begin(), v.end(), [](T left, T right) {return *left < *right; });
-}
-
-/*----------------------------------------------------------------------------------------*/
-bool findFirstWay(unsigned char h)
-{
-    h = toupper(h);
-    if (h == 'A' || h == 'E' || h == 'I' || h == 'O' || h == 'U')
-    {
-        return true;
-    }
-    return false;
 }
 
 /*----------------------------------------------------------------------------------------*/
@@ -67,7 +50,7 @@ public:
     {
         for (auto c : lettersBooks)
         {
-            if( (c >64 && c<123) && (c < 91 || c > 96) )
+            if( (c >64 && c<123) && !(c > 90 && c < 97) )
             {
                 ++countLettersBook;
             }
