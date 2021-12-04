@@ -5,7 +5,8 @@
 #include <deque>
 #include <string>
 #include <algorithm>
-#include <random>
+//#include <random>
+#include <iomanip>
 
 using namespace std;
 
@@ -15,7 +16,7 @@ using namespace std;
   Реализуйте шаблонную функцию insert_sorted, которая сможет аналогично работать 
   с любым контейнером, содержащим любой тип значения.                           */
 
-void InsertSorted(std::vector<int>& vec, int value)
+void insert_sorted(std::vector<int>& vec, int value)
 {
 	auto it = upper_bound(vec.begin(), vec.end(), value);
 	vec.insert(it, value);
@@ -23,14 +24,14 @@ void InsertSorted(std::vector<int>& vec, int value)
 
 
 template<class C, class T>
-void InsertSorted(C& container, T value)
+void insert_sorted(C& container, T value)
 {
 	auto it = upper_bound(container.begin(), container.end(), value);
 	container.insert(it, value);
 }
 
 template<class C>
-void PrintContainer(C& vec)
+void printContainer(C& vec)
 {
 	
 	for (auto i = vec.begin(); i != vec.end(); ++i)
@@ -55,7 +56,7 @@ void PrintContainer(C& vec)
 	i=0
 */
 
-double SignalError(std::vector<double> analogue, std::vector<int> digital)
+double getSignalError(std::vector<double> analogue, std::vector<int> digital)
 {
 	double result = 0.0;
 
@@ -67,6 +68,22 @@ double SignalError(std::vector<double> analogue, std::vector<int> digital)
 	return result;
 }
 
+template <class S>
+void printSignal(S& vec)
+{
+	int count = 0;
+	for (auto i = vec.begin(); i != vec.end(); ++i)
+	{
+		//std::cout << std::fixed << std::setprecision(10);
+		std::cout << std::left << std::setw(8) << *i ;
+		//std::cout << std::right << *i << '\t';
+			
+
+	}
+	std::cout << std::endl;
+}
+
+
 /*----------------------------------------------------------------------*/
 
 int main()
@@ -75,54 +92,54 @@ int main()
 
 	std::vector<int> vec{ 1, 2, 3, 5, 7, 9 };
 	std::cout << "Before: " << std::endl;
-	PrintContainer(vec);
+	
+	printContainer(vec);
 	std::vector<std::string> strVec{ "aaa", "bbb", "ccc", "fff" };
-	PrintContainer(strVec);
+	printContainer(strVec);
 	std::deque<double> deq{ 0.1, 0.2, 0.4, 0.5 };
-	PrintContainer(deq);
+	printContainer(deq);
 	std::string str = "abcefghj";
-	PrintContainer(str);
+	printContainer(str);
 	std::list<char> lst{ 'a', 'b', 'e', 'f' };
-	PrintContainer(lst);
+	printContainer(lst);
 	
 	std::cout << "After : " << std::endl;
 
-	InsertSorted(vec, 4);
-	InsertSorted(vec, 4);
-	InsertSorted(vec, 6);
-	InsertSorted(vec, 8);
-	PrintContainer(vec);
+	insert_sorted(vec, 4);
+	insert_sorted(vec, 4);
+	insert_sorted(vec, 6);
+	insert_sorted(vec, 8);
+	printContainer(vec);
 	
-	InsertSorted(strVec, "ddd");
-	InsertSorted(strVec, "eee");
-	PrintContainer(strVec);
+	insert_sorted(strVec, "ddd");
+	insert_sorted(strVec, "eee");
+	printContainer(strVec);
 
-	InsertSorted(deq, 0.3);
-	PrintContainer(deq);
+	insert_sorted(deq, 0.3);
+	printContainer(deq);
 	
-	InsertSorted(str, 'd');
-	InsertSorted(str, 'i');
-	PrintContainer(str);
+	insert_sorted(str, 'd');
+	insert_sorted(str, 'i');
+	printContainer(str);
 
-	InsertSorted(lst, 'd');
-	InsertSorted(lst, 'c');
-	PrintContainer(lst);
+	insert_sorted(lst, 'd');
+	insert_sorted(lst, 'c');
+	printContainer(lst);
 	
 
 	std::cout << "\n---------- Task 2 ------------\n";
 
 	std::vector<double> analogueSignal(100);
 
-	//srand(time(0));
 	generate(analogueSignal.begin(), analogueSignal.end(),
 		[]() { return (static_cast<double>(rand() % 100) / ((rand() % 10) + 1)); });
 
-	PrintContainer(analogueSignal);
+	printSignal(analogueSignal);
 
 	std::vector<int> digitalSignal(100);
 
 	copy(analogueSignal.begin(), analogueSignal.end(), digitalSignal.begin());
-	PrintContainer(digitalSignal);
+	printSignal(digitalSignal);
 
-	std::cout << "Signal error = " << SignalError(analogueSignal, digitalSignal) << std::endl;
+	std::cout << "Signal error = " << getSignalError(analogueSignal, digitalSignal) << std::endl;
 }
