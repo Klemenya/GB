@@ -146,7 +146,7 @@ class Iterator
     int* m_begin;
     int* m_end;
 public:
-    Iterator(std::vector<int>& i_vector) : m_vector(i_vector)
+    Iterator(std::vector<int>& _itvector) : m_vector(_itvector)
     {
         m_begin = m_vector.empty() ? 0 : &m_vector.front();
         m_end = m_begin + m_vector.size();
@@ -185,7 +185,7 @@ int main()
       реализовать метод только для 1,2,3-размерной матриц            */
 
     std::cout << "\n\n---------- Task 2 ------------\n\n";
-    std::vector<int> iMatrix = { 2, 4, 3, 5, 7, 8, 6, 9, 1 }; // Determinant = 51
+    std::vector<int> iMatrix = { 2, 4, 3, 5, 7, 8, 6, 9, 1 };
 
     Matrix matrixThree(3, iMatrix);
     matrixThree.PrintMatrix();
@@ -193,12 +193,19 @@ int main()
     std::cout << "Determinant: " << matrixThree.Determinant(3, initialIntMatrix) << "\n\n";
 
 
-    iMatrix = { 2, 4, 9, 1 }; // Determinant = 51
+    iMatrix = { 2, 4, 9, 1 };
 
     Matrix matrixTwo(2, iMatrix);
     matrixTwo.PrintMatrix();
     initialIntMatrix = matrixTwo.GetMatrix();
     std::cout << "Determinant: " << matrixTwo.Determinant(2, initialIntMatrix) << "\n\n";
+
+    iMatrix = { 5 };
+
+    Matrix matrixOne(1, iMatrix);
+    matrixOne.PrintMatrix();
+    initialIntMatrix = matrixOne.GetMatrix();
+    std::cout << "Determinant: " << matrixOne.Determinant(1, initialIntMatrix) << "\n\n";
     
 
     /*----------------------------------------------------------------------*/
@@ -206,7 +213,6 @@ int main()
     /*Реализовать собственный класс итератора, с помощью которого можно будет
       проитерироваться по диапазону целых чисел в цикле for-range-based.     */
 
-    std::cout << "\n\n---------- Task 3 ------------\n\n";
 
 
 
