@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package Univer;
+
+message FullName {
+  required string name = 1;
+  required string surname = 2;
+  optional string patronymic = 3;
+}
+
+message Student {
+    required Univer.FullName name = 1;
+    repeated int32 scores = 2;
+	required int32 averageScore = 3;
+}
+
+message StudentsGroup {
+    repeated Univer.Student students = 1;
+}
